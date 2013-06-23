@@ -11,28 +11,34 @@ PMX/PMDの超簡易ローダ（未完成）です。
 - 設計は適当
 - No JavaDoc
 
+＊＊現在頂点・麺・材質まで読めます。＊＊
 
 PMDも一応読めますが内部でPMXに変換して格納してます。
 
-  src/Main.java - サンプルコード（processingのjarが必要）
-    com/
-      na128/
-        mmd/
-          Reader.java - ユーティリティ兼インターフェース
-          Pmx.java - 読み込んだデータの格納
-          PmxReader.java - PMXパーサ
-          PmdReader.java - PMDパーサ
-          ChunkReader.java - 内部用
-            data/ - 各データ構造体
+Files
+-----
 
-Example:
-  
-  // 読み込み
-  Pmx pmx = Reader.read(new File("path/to/pmx_or_pmd.pmx"));
-  
-  // ファイルのバージョン取得
-  pmx.getHeader().getVersion();
++ src/
+	+ Main.java - サンプルコード（processingのjarが必要）
++ src/com/na128/mmd/
+      + Reader.java - ユーティリティ兼インターフェース
+      + Pmx.java - 読み込んだデータの格納
+      + PmxReader.java - PMXパーサ
+      + PmdReader.java - PMDパーサ<br />
+      + ChunkReader.java - 内部用<br />
++ src/com/na128/mmd/data/ - 各データ構造体
 
-License:
-  ソースコードそのものはほぼPDSですが、ファイルフォーマットはPmxEditorのPMX仕様に基づいているので商用利用ができないなどの制約があります。注意してください。
+Example
+-------
+  
+  
+  Pmx pmx = Reader.read(new File("path/to/pmx_or_pmd.pmx")); // 読み込み
+  
+  
+  pmx.getHeader().getVersion(); // ファイルのバージョン取得
+
+License
+-------
+
+ソースコードそのものはほぼPDSですが、ファイルフォーマットはPmxEditorのPMX仕様に基づいているので商用利用ができないなどの制約があります。注意してください。
   
