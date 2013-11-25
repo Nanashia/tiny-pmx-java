@@ -230,7 +230,10 @@ public class PmxReader extends Reader {
 				m.setSphereTexture(readNativeInteger(input, flags[3]));
 				m.setSphereMode(readByte(input));
 				m.setToonShared(readByte(input));
-				m.setToonTexture(readNativeInteger(input, flags[3]));
+				if(m.getToonShared() == 1)
+					m.setToonTexture(readNativeInteger(input, flags[3]));
+				else
+					m.setToonTexture(readByte(input));
 				m.setMemo(readPString(input, charset));
 				m.setBoundFace(readNativeInteger(input));
 				materials[i] = m;
