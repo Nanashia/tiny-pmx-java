@@ -44,6 +44,33 @@ public abstract class Reader {
 		}
 		throw new IllegalArgumentException();
 	}
+	
+	protected static long readNativeUInt(InputStream input, int length)
+			throws IOException {
+		input.read(buffer4, 0, length);
+		ByteBuffer bb = ByteBuffer.wrap(buffer4);
+		long l = 0;
+		switch (length) {
+		case (1):
+			l = bb.order(ByteOrder.LITTLE_ENDIAN).get();
+			if(l < 0)
+				l = (Byte.MAX_VALUE + 1) * 2 - l;
+			break;
+		case (2):
+			l = bb.order(ByteOrder.LITTLE_ENDIAN).getShort();
+			if(l < 0)
+				l = (Short.MAX_VALUE + 1) * 2 + l;
+			break;
+		case (4):
+			l = bb.order(ByteOrder.LITTLE_ENDIAN).getInt();
+			if(l < 0)
+				l = (Integer.MAX_VALUE + 1) * 2 - l;
+			break;
+		default:
+			throw new IllegalArgumentException();
+		}
+		return l;
+	}
 
 	protected static String readPString(InputStream input, Charset charset)
 			throws IOException {

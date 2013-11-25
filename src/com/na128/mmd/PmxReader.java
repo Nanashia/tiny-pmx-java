@@ -172,9 +172,9 @@ public class PmxReader extends Reader {
 			data.setFaces(faces);
 			for (int i = 0; i < faces.length; i++) {
 				Face face = new Face();
-				face.setV1(readNativeInteger(input, flags[2]));
-				face.setV2(readNativeInteger(input, flags[2]));
-				face.setV3(readNativeInteger(input, flags[2]));
+				face.setV1(readNativeUInt(input, flags[2]));
+				face.setV2(readNativeUInt(input, flags[2]));
+				face.setV3(readNativeUInt(input, flags[2]));
 				faces[i] = face;
 			}
 		}
